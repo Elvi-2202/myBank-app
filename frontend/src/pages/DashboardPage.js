@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getOperations } from '../services/operationService';
+import React from 'react';
 
-function DashboardPage() {
-    const [operations, setOperations] = useState([]);
-
-    useEffect(() => {
-        const fetchOperations = async () => {
-            const data = await getOperations();
-            setOperations(data);
-        };
-        fetchOperations();
-    }, []);
-
+const DashboardPage = () => {
     return (
-        <div>
-            <h2>Dashboard</h2>
-            <ul>
-                {operations.map((operation) => (
-                    <li key={operation.id}>
-                        {operation.label} - ${operation.amount}
-                    </li>
-                ))}
-            </ul>
+        <div className="dashboard-page">
+            <h2>Tableau de bord</h2>
+            <p>Bienvenue dans votre tableau de bord des finances.</p>
         </div>
     );
-}
+};
 
 export default DashboardPage;

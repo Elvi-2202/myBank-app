@@ -1,28 +1,12 @@
-import React, { useState } from 'react';
-import { createCategory } from '../services/categoryService';
+import React from 'react';
 
-function CategoryPage() {
-    const [title, setTitle] = useState('');
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await createCategory({ title });
-    };
-
+const CategoryPage = () => {
     return (
-        <div>
-            <h2>Create Category</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Category Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <button type="submit">Add Category</button>
-            </form>
+        <div className="category-page">
+            <h2>Catégories</h2>
+            <p>Gérez vos catégories de dépenses ici.</p>
         </div>
     );
-}
+};
 
 export default CategoryPage;

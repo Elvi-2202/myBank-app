@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Button({ text, onClick }) {
+const Button = ({ label, onClick }) => {
     return (
-        <button className="btn" onClick={onClick}>
-            {text}
+        <button className="button" onClick={onClick}>
+            {label}
         </button>
     );
-}
+};
 
 export default Button;

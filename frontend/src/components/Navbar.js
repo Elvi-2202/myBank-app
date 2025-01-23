@@ -1,16 +1,11 @@
 import React from 'react';
 
-function Navbar() {
+const Navbar = () => {
     return (
         <nav className="navbar">
-            <h1>BankBank</h1>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-            </ul>
+            <h1>MyBank</h1>
         </nav>
     );
-}
+};
 
 export default Navbar;

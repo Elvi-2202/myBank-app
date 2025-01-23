@@ -8,24 +8,21 @@ import OperationPage from './pages/OperationPage';
 import CategoryPage from './pages/CategoryPage';
 import './App.css';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/create-operation" element={<OperationPage />} />
-            <Route path="/create-category" element={<CategoryPage />} />
-          </Routes>
-        </div>
-        <Footer />
-      </div>
-    </Router>
-  );
-}
+const App = () => {
+    return (
+        <Router>
+            <Navbar />
+            <main>
+                <Routes>
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/dashboard" element={<DashboardPage />} />
+                    <Route path="/operations" element={<OperationPage />} />
+                    <Route path="/categories" element={<CategoryPage />} />
+                </Routes>
+            </main>
+            <Footer />
+        </Router>
+    );
+};
 
 export default App;

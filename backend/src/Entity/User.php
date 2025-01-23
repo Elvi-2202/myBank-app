@@ -1,8 +1,12 @@
 <?php
 
+// src/Entity/User.php
+
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\UserRepository; 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -21,6 +25,14 @@ class User
 
     #[ORM\Column(length: 255)]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Operation::class)]
+    private Collection $operations;
+
+    public function __construct()
+    {
+        $this->operations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -61,5 +73,10 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getOperations(): Collection
+    {
+        return $this->operations;
     }
 }

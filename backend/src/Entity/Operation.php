@@ -1,9 +1,10 @@
 <?php
 
+// src/Entity/Operation.php
+
 namespace App\Entity;
 
 use App\Repository\OperationRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OperationRepository::class)]
@@ -20,11 +21,16 @@ class Operation
     #[ORM\Column]
     private ?float $amount = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: "datetime")]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'operations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'operations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -67,14 +73,26 @@ class Operation
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
