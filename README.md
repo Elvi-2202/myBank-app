@@ -1,70 +1,109 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Présentation du Projet**
 
-## Available Scripts
+**MyBank App** est une application web qui permet aux utilisateurs de gérer leurs comptes bancaires, effectuer des opérations (dépôts, retraits, virements), et consulter leur historique de transactions. Le projet est divisé en deux parties principales :
 
-In the project directory, you can run:
+- **Backend** : Une API RESTful développée avec Symfony (PHP) qui gère la logique métier, les opérations bancaires et la communication avec la base de données.
+- **Frontend** : Une interface utilisateur développée avec React (JavaScript) qui permet aux utilisateurs d'interagir avec l'application de manière intuitive.
 
-### `npm start`
+## **Technologies Utilisées**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Backend** :
+  - Symfony (PHP)
+  - MySQL (Base de données)
+  - Docker (Conteneurisation)
+  - Composer (Gestion des dépendances PHP)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend** :
+  - React (JavaScript)
+  - Axios (Communication avec l'API)
+  - Docker (Conteneurisation)
+  - NPM (Gestion des dépendances JavaScript)
 
-### `npm test`
+- **Outils Communs** :
+  - Docker Compose (Orchestration des conteneurs)
+  - GitHub Actions (CI/CD)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Installation et Configuration**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Cloner le Projet**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clonez le dépôt GitHub :
+   git clone https://github.com/Elvi-2202/myBank-app.git
+   cd myBank-app
+  
 
-### `npm run eject`
+2. Le projet est divisé en deux dossiers :
+   - `backend` : Contient le code source du backend.
+   - `frontend` : Contient le code source du frontend.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Configuration du Backend**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Accédez au dossier `backend` :
+   cd backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Configurez les variables d'environnement :
+   - Créez un fichier `.env.local` à partir du fichier `.env` :
+    
+   - Modifiez le fichier `.env.local` pour configurer les accès à la base de données :
+     
+     DATABASE_URL="mysql://root:password@db:3307/mybank-db?serverVersion=10.4.32-MariaDB&charset=utf8mb4"
+     
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### **Configuration du Frontend**
 
-## Learn More
+1. Accédez au dossier `frontend` :
+   cd ../frontend
+   
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Installez les dépendances JavaScript avec NPM : 
+   npm install
+  
+## **Lancer l'Application avec Docker**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Revenez à la racine du projet : 
+   cd ..
+  
+2. Utilisez Docker Compose pour lancer les conteneurs :
+   ```bash
+   docker-compose up --build
+   ```
 
-### Code Splitting
+3. Une fois les conteneurs démarrés, accédez à l'application :
+   - **Frontend** : [http://localhost:3000](http://localhost:3000)
+   - **Backend** : [http://localhost:8080](http://localhost:8080)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## **Lancer l'Application en Local**
 
-### Analyzing the Bundle Size
+### **Backend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Accédez au dossier `backend` :
+   cd backend
+ 
 
-### Making a Progressive Web App
+2. Lancez le serveur Symfony :
+   symfony server:start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Accédez au backend : [http://localhost:8000]
 
-### Advanced Configuration
+### **Frontend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Accédez au dossier `frontend` :
+   cd ../frontend
 
-### Deployment
+2. Lancez le serveur de développement React :
+   npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+3. Accédez au frontend : [http://localhost:3000]
 
-### `npm run build` fails to minify
+## **Déploiement**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Le projet utilise **GitHub Actions** pour automatiser le déploiement. Chaque fois que du code est poussé sur la branche `main`, le pipeline CI/CD :
+
+1. Installe les dépendances.
+2. Exécute les tests.
+3. Construit les images Docker.
+4. Déploie l'application sur un serveur.
+
